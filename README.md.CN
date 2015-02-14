@@ -1,0 +1,131 @@
+﻿使用说明
+1.类包括只读元素与可读写元素,只读元素无法被重写(包括子类),可读写元素可以被重写(包括子类)
+2.支持多重继承,一个类可以同时继承类1与类2,通过super[index]方式访问父类,子类可以重写父类可读写元素
+3.支持继承链(a继承b,b继承c,c继承d)
+4.支持对象批量释放,对象1对象2对象3继承自类1,可以一次性释放对象123,或者只释放对象1
+5.支持对象元素定义,可以定义对象特有的元素
+6.支持事件,事件可以被继承
+7.支持事件多播处理程序,处理程序可以拥有不同数量的形参(第一个参数永远是sender),实参多于形参的部分被忽略,形参多于实参的部分用nil填充
+8.不允许交叉继承(a继承b,b不能继承a)
+
+示例
+例1:定义Person类并创建对象,打印变量id,释放对象
+方法一
+local Person=Class:create()    声明类
+Person.inherit={Object}     继承类(Person继承Object)
+Person.readonly={id=1,tostring=function(s) print(s) end}      只读元素,不可重载,可继承
+Person.override={name="person",getvalue=function(v) return v end}   可重载元素,可继承
+person=Person:new()
+print(person.id)
+person:release()
+方法二
+local Person=Class:create({inherit={Object},readonly={id=1},override={name="person"}})
+person=Person:new()
+print(person.id)
+person:release()
+例2:一次性释放Person类生成的所有对象
+local Person=Class:create()
+Person.inherit={Object}
+Person.readonly={id=1,tostring=function(s) print(s) end}
+Person.override={name="person",getvalue=function(v) return v end}
+person1=Person:new()
+person2=Person:new()
+person3=Person:new()
+Person:abandon()    person1,person2,person3同时释放
+例3:访问父类元素
+local Person=Class:create()
+Person.inherit={Object}
+Person.readonly={id=1,tostring=function(s) print(s) end}
+Person.override={name="person",getvalue=function(v) return v end}
+person=Person:new()
+print(person.super.id) 
+例4:通过索引访问父类元素
+local Person=Class:create()
+Person.inherit={Object1,Object2}
+Person.readonly={id=1,tostring=function(s) print(s) end}
+Person.override={name="person",getvalue=function(v) return v end}
+person=Person:new()
+person.super[2].tostring()
+例5:定义类事件(继承的类也同时拥有该事件),绑定事件处理程序,并触发事件
+local Person=Class:create()
+local Event=require "event"
+print_event=Event:new()
+Person.event={print_event}
+function p(sender,args) 
+    print(args) 
+end
+person=Person:new()
+person.event(print_event):bind(p)
+person.event(print_event):fire(2)
+例6:定义对象事件(仅该对象拥有该事件),绑定事件处理程序,并触发事件
+local Person=Class:create()
+local Event=require "event"
+print_event=Event:new()
+function p(sender,args) --事件处理程序的第一个参数永远是事件对象自身
+    print(args) 
+end
+person=Person:new()
+person.event:register(print_event)
+person.event(print_event):bind(p)
+person.event(print_event):fire(2)	--sender会自动赋值到事件处理程序的第一个参数,fire内的参数为可变参数,从事件处理程序的第二个参数开始依次赋值
+例7:多播事件,可以拥有不同数量形参
+local Person=Class:create()
+local Event=require "event"
+print_event=Event:new()
+function p1(sender,args1) 
+    print(args2) 
+end
+function p2(sender,args1,args2) 
+    print(args1,args2) 
+end
+person=Person:new()
+person.event:register(print_event)
+person.event(print_event):bind(p1)
+person.event(print_event):bind(p2)
+person.event(print_event):fire(2)
+out:
+2
+2	nil
+person.event(print_event):fire(1,2)
+out:
+1
+1	2
+例8:事件的继承
+local Class=require "class"
+local Event=require "event"
+local Person=Class:create()
+print_event=Event:new()
+Person.event={print_event}
+local Man=Class:create({inherit={Person}})	--man继承Person,因此也继承了Person的print_event事件
+function p(sender,args) 
+    print(sender,args) 
+end
+person=Person:new()
+man=Man:new();
+person.event(print_event):bind(p)
+man.event(print_event):bind(p)
+person.event(print_event):fire(1)
+man.event(print_event):fire(2)
+out:
+table: 0x4037a060	1	对象person的print_event事件的触发结果
+table: 0x4036cd40	2	对象man的print_event事件的触发结果
+可以看到以上两个事件的sender指向了不同的事件对象
+
+Api
+Class.inherit={父类表}
+Class.readonly={只读元素表}
+Class.override={可读写元素表}
+Class.event={事件表} 
+Class:create([inherit],[readonly],[override],[event])	创建类
+Class-->NewClass
+NewClass:new()	创建对象
+NewClass:abandon()	释放该类创建的所有对象
+Class-->object
+object:register(event)	注册对象事件
+object:remove(event)	移除对象事件
+object:release()	释放对象
+object:copy()	对象深度复制
+object.event(event):bind(handler)	绑定事件处理程序
+object.event(event):unbind(handler)	解绑事件处理程序
+object.event(event):fire(sender,args)	触发事件处理程序
+
