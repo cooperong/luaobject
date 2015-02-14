@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿Read Me
+=======
+Read Me
+>>>>>>> e6503754178dda0923793ab46be43632900da609
 Author:cooperong
 Version:0.1.1
 1.Class includes  read-only elements and read-write elements,read-only elements can not be overridden(include sub class),read-write elements can be overridden(include sub class).
