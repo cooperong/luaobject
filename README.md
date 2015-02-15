@@ -2,16 +2,15 @@
 ========
 ####Author:cooperong
 ####Version:0.1.1
------------------
 ###Description
 1.Class includes  read-only elements and read-write elements,read-only elements can not be overridden(include sub class),read-write elements can be overridden(include sub class).<br>
 2.Class supports multiple inheritance,A class can also inherit class1 and class2,access the parent class through the super[index],the read-write elements of parent class can be overridden from  sub class.<br>
-3.Support inheritance chain(A inherit B,B inherit C,C inherit D,and so on).
-4.Support objects batch release,if object1,object2,object3 inherit Class1,release Class1,will release object1,object2,object3 automatic.
-5.Support single object element definition.
-6.Support bind event, event can be inherited.
-7.Support multicast event handler,handler can have a different number of parameters(the first parameter is always sender).
-8.Not support cross inheritance.
+3.Support inheritance chain(A inherit B,B inherit C,C inherit D,and so on).<br>
+4.Support objects batch release,if object1,object2,object3 inherit Class1,release Class1,will release object1,object2,object3 automatic.<br>
+5.Support single object element definition.<br>
+6.Support bind event, event can be inherited.<br>
+7.Support multicast event handler,handler can have a different number of parameters(the first parameter is always sender).<br>
+8.Not support cross inheritance.<br>
 
 ###Example
 ####example 1
