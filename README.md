@@ -15,7 +15,7 @@
 ####example 1
 Define a Person class and create the object, print the variable id, and then release the object
 #####methon 1
-` ``lua
+```lua
 local Person=Class:create()    --declara class
 
 Person.inherit={Object}     --inherit Object
