@@ -1,6 +1,4 @@
-#Read Me
-####Author:cooperong
-####Version:0.1.1
+#luaobject
 ###Description
 1.Class includes  read-only elements and read-write elements,read-only elements can not be overridden(include sub class),read-write elements can be overridden(include sub class).<br>
 2.Class supports multiple inheritance,A class can also inherit class1 and class2,access the parent class through the super[index],the read-write elements of parent class can be overridden from  sub class.<br>
@@ -24,7 +22,7 @@ Person.override={name="person",getvalue=function(v) return v end}   --can be ove
 person=Person:new()
 print(person.id)
 person:release()
-` ``lua
+```lua
 #####methon2
 local Person=Class:create({inherit={Object},readonly={id=1},override={name="person"}})
 person=Person:new()
