@@ -4,8 +4,8 @@
 ####Version:0.1.1
 -----------------
 ###Description
-1.Class includes  read-only elements and read-write elements,read-only elements can not be overridden(include sub class),read-write elements can be overridden(include sub class).
-2.Class supports multiple inheritance,A class can also inherit class1 and class2,access the parent class through the super[index],the read-write elements of parent class can be overridden from  sub class.
+		1.Class includes  read-only elements and read-write elements,read-only elements can not be overridden(include sub class),read-write elements can be overridden(include sub class).
+		2.Class supports multiple inheritance,A class can also inherit class1 and class2,access the parent class through the super[index],the read-write elements of parent class can be overridden from  sub class.
 3.Support inheritance chain(A inherit B,B inherit C,C inherit D,and so on).
 4.Support objects batch release,if object1,object2,object3 inherit Class1,release Class1,will release object1,object2,object3 automatic.
 5.Support single object element definition.
