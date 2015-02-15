@@ -106,14 +106,8 @@ person.event:register(print_event)
 person.event(print_event):bind(p1)
 person.event(print_event):bind(p2)
 person.event(print_event):fire(2)
-```
-out:
-2
-2	nil
 person.event(print_event):fire(1,2)
-out:
-1
-1	2
+```
 ####example 8
 event can be inherited
 ```lua
@@ -133,25 +127,26 @@ man.event(print_event):bind(p)
 person.event(print_event):fire(1)
 man.event(print_event):fire(2)
 ```
-out:
-table: 0x4037a060	1	result of the person
-table: 0x4036cd40	2	result of the man
-You can see the two event sender points to a different event object.
+out:<br>
+table: 0x4037a060	1	result of the person<br>
+table: 0x4036cd40	2	result of the man<br>
+You can see the two event sender points to a different event object.<br>
 
 ###Api
-Class.inherit={parent class}
-Class.readonly={read-only elements}
-Class.override={read-write elements}
-Class.event={events} 
-Class:create([inherit],[readonly],[override],[event])	create Class
-Class-->NewClass
-NewClass:new()	create object
-NewClass:abandon()	release all object
-Class-->object
-object:register(event)	register the object event
-object:remove(event)	remove the object event
-object:release()	release this object
-object:copy()	deep copy object
-object.event(event):bind(handler)	event bind handler
-object.event(event):unbind(handler)	event unbind handler
-object.event(event):fire(sender,args)	fire event
+Class.inherit={parent class}<br>
+Class.readonly={read-only elements}<br>
+Class.override={read-write elements}<br>
+Class.event={events} <br>
+Class:create([inherit],[readonly],[override],[event])	create Class<br>
+Class-->NewClass<br>
+NewClass:new()	create object<br>
+NewClass:abandon()	release all object<br>
+Class-->object<br>
+object:register(event)	register the object event<br>
+object:remove(event)	remove the object event<br>
+object:release()	release this object<br>
+object:copy()	deep copy object<br>
+object.event(event):bind(handler)	event bind handler<br>
+object.event(event):unbind(handler)	event unbind handler<br>
+object.event(event):fire(sender,args)	fire event<br>
+
