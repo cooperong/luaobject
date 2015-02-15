@@ -15,19 +15,20 @@ Define a Person class and create the object, print the variable id, and then rel
 #####methon 1
 ```lua
 local Person=Class:create()    --declara class
-
 Person.inherit={Object}     --inherit Object
 Person.readonly={id=1,tostring=function(s) print(s) end}      read-only element,can not be override,can be inherited
 Person.override={name="person",getvalue=function(v) return v end}   --can be override,can be inherited
 person=Person:new()
 print(person.id)
 person:release()
-```lua
+```
 #####methon2
+```lua
 local Person=Class:create({inherit={Object},readonly={id=1},override={name="person"}})
 person=Person:new()
 print(person.id)
 person:release()
+```
 ####example 2
 Release all objects that be generated from Person
 local Person=Class:create()
