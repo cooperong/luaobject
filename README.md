@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-﻿Read Me
-=======
-Read Me
->>>>>>> e6503754178dda0923793ab46be43632900da609
-Author:cooperong
-Version:0.1.1
+#Read Me
+========
+####Author:cooperong
+####Version:0.1.1
+-----------------
+###Description
 1.Class includes  read-only elements and read-write elements,read-only elements can not be overridden(include sub class),read-write elements can be overridden(include sub class).
 2.Class supports multiple inheritance,A class can also inherit class1 and class2,access the parent class through the super[index],the read-write elements of parent class can be overridden from  sub class.
 3.Support inheritance chain(A inherit B,B inherit C,C inherit D,and so on).
@@ -14,8 +13,10 @@ Version:0.1.1
 7.Support multicast event handler,handler can have a different number of parameters(the first parameter is always sender).
 8.Not support cross inheritance.
 
-example 1:Define a Person class and create the object, print the variable id, and then release the object
-methon 1
+###Example
+####example 1
+Define a Person class and create the object, print the variable id, and then release the object
+#####methon 1
 local Person=Class:create()    --declara class
 Person.inherit={Object}     --inherit Object
 Person.readonly={id=1,tostring=function(s) print(s) end}      read-only element,can not be override,can be inherited
@@ -23,12 +24,13 @@ Person.override={name="person",getvalue=function(v) return v end}   --can be ove
 person=Person:new()
 print(person.id)
 person:release()
-methon2
+#####methon2
 local Person=Class:create({inherit={Object},readonly={id=1},override={name="person"}})
 person=Person:new()
 print(person.id)
 person:release()
-example 2:Release all objects that be generated from Person
+####example 2
+Release all objects that be generated from Person
 local Person=Class:create()
 Person.inherit={Object}
 Person.readonly={id=1,tostring=function(s) print(s) end}
@@ -37,21 +39,24 @@ person1=Person:new()
 person2=Person:new()
 person3=Person:new()
 Person:abandon()
-example 3:Access parent class elements
+####example 3
+Access parent class elements
 local Person=Class:create()
 Person.inherit={Object}
 Person.readonly={id=1,tostring=function(s) print(s) end}
 Person.override={name="person",getvalue=function(v) return v end}
 person=Person:new()
 print(person.super.id) 
-example 4:Access to the parent element by index
+####example 4
+Access to the parent element by index
 local Person=Class:create()
 Person.inherit={Object1,Object2}
 Person.readonly={id=1,tostring=function(s) print(s) end}
 Person.override={name="person",getvalue=function(v) return v end}
 person=Person:new()
 person.super[2].tostring()
-例5:Define the event, binding event handler, and trigger events
+####example 5
+Define the event, binding event handler, and trigger events
 local Person=Class:create()
 local Event=require "event"
 print_event=Event:new()
@@ -62,7 +67,8 @@ end
 person=Person:new()
 person.event(print_event):bind(p)
 person.event(print_event):fire(2)
-example 6:Define the object event, binding event handler, and trigger events
+####example 6
+Define the object event, binding event handler, and trigger events
 local Person=Class:create()
 local Event=require "event"
 print_event=Event:new()
@@ -73,7 +79,8 @@ person=Person:new()
 person.event:register(print_event)
 person.event(print_event):bind(p)
 person.event(print_event):fire(2)
-example 7:multicast event handler
+####example 7
+multicast event handler
 local Person=Class:create()
 local Event=require "event"
 print_event=Event:new()
@@ -95,7 +102,8 @@ person.event(print_event):fire(1,2)
 out:
 1
 1	2
-example 8:event can be inherited
+####example 8
+event can be inherited
 local Class=require "class"
 local Event=require "event"
 local Person=Class:create()
@@ -116,7 +124,7 @@ table: 0x4037a060	1	result of the person
 table: 0x4036cd40	2	result of the man
 You can see the two event sender points to a different event object.
 
-Api
+###Api
 Class.inherit={parent class}
 Class.readonly={read-only elements}
 Class.override={read-write elements}
