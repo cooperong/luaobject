@@ -31,6 +31,7 @@ person:release()
 ```
 ####example 2
 Release all objects that be generated from Person
+```lua
 local Person=Class:create()
 Person.inherit={Object}
 Person.readonly={id=1,tostring=function(s) print(s) end}
@@ -39,24 +40,30 @@ person1=Person:new()
 person2=Person:new()
 person3=Person:new()
 Person:abandon()
+```
 ####example 3
 Access parent class elements
+```lua
 local Person=Class:create()
 Person.inherit={Object}
 Person.readonly={id=1,tostring=function(s) print(s) end}
 Person.override={name="person",getvalue=function(v) return v end}
 person=Person:new()
 print(person.super.id) 
+```
 ####example 4
 Access to the parent element by index
+```lua
 local Person=Class:create()
 Person.inherit={Object1,Object2}
 Person.readonly={id=1,tostring=function(s) print(s) end}
 Person.override={name="person",getvalue=function(v) return v end}
 person=Person:new()
 person.super[2].tostring()
+```
 ####example 5
 Define the event, binding event handler, and trigger events
+```lua
 local Person=Class:create()
 local Event=require "event"
 print_event=Event:new()
@@ -67,8 +74,10 @@ end
 person=Person:new()
 person.event(print_event):bind(p)
 person.event(print_event):fire(2)
+```
 ####example 6
 Define the object event, binding event handler, and trigger events
+```lua
 local Person=Class:create()
 local Event=require "event"
 print_event=Event:new()
@@ -79,8 +88,10 @@ person=Person:new()
 person.event:register(print_event)
 person.event(print_event):bind(p)
 person.event(print_event):fire(2)
+```
 ####example 7
 multicast event handler
+```lua
 local Person=Class:create()
 local Event=require "event"
 print_event=Event:new()
@@ -95,6 +106,7 @@ person.event:register(print_event)
 person.event(print_event):bind(p1)
 person.event(print_event):bind(p2)
 person.event(print_event):fire(2)
+```
 out:
 2
 2	nil
@@ -104,6 +116,7 @@ out:
 1	2
 ####example 8
 event can be inherited
+```lua
 local Class=require "class"
 local Event=require "event"
 local Person=Class:create()
@@ -119,6 +132,7 @@ person.event(print_event):bind(p)
 man.event(print_event):bind(p)
 person.event(print_event):fire(1)
 man.event(print_event):fire(2)
+```
 out:
 table: 0x4037a060	1	result of the person
 table: 0x4036cd40	2	result of the man
