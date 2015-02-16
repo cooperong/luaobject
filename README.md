@@ -1,5 +1,6 @@
 #luaobject
 ###Description
+A lua package for object-oriented programming, supports the following properties:
 1.Class includes  read-only elements and read-write elements,read-only elements can not be overridden(include sub class),read-write elements can be overridden(include sub class).<br>
 2.Class supports multiple inheritance,A class can also inherit class1 and class2,access the parent class through the super[index],the read-write elements of parent class can be overridden from  sub class.<br>
 3.Support inheritance chain(A inherit B,B inherit C,C inherit D,and so on).<br>
