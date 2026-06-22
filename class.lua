@@ -4,6 +4,7 @@ local G=_G
 local errinfo="error:Permission denied!"
 setfenv(1,M)
 
+
 function create(self,c)
     local Class=c or {}    
     Class.inherit=Class.inherit or {}   --父类表
