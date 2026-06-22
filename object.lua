@@ -5,6 +5,7 @@ local M={}
 local G=_G
 local errinfo="error:Permission denied!"
 setfenv(1,M)
+
 local function deepcopy(orig)   --对象的深度复制
     local orig_type = G.type(orig)
     local copy
