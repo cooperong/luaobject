@@ -5,6 +5,7 @@ local G=_G
 local errinfo="error:Permission denied!"
 setfenv(1,M)
 
+
 local Event=Class:create({readonly={
     fire=function(self,...)
 		local isNotFound=true	
