@@ -10,6 +10,7 @@ A lua package for object-oriented programming, supports the following properties
 7.Support multicast event handler,handler can have a different number of parameters(the first parameter is always sender).<br>
 8.Not support cross inheritance.<br>
 
+
 ###Example
 ####example 1
 Define a Person class and create the object, print the variable id, and then release the object
